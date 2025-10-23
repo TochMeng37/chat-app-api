@@ -1,0 +1,42 @@
+## Installation
+
+Run all these commands in sequence:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/golang-fiber-chat.git
+cd golang-fiber-chat
+
+# 2. Install Go dependencies
+go mod tidy
+
+# 3. Setup PostgreSQL database
+# Run these SQL commands in your PostgreSQL client
+CREATE DATABASE chat_app;
+
+-- Users table
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL
+);
+
+-- Messages table
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY,
+  sender VARCHAR(50),
+  recipient VARCHAR(50),
+  content TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+# 4. Configure environment variables
+# Create a .env file in project root
+# Example:
+# PORT=5000
+# DATABASE_URL=postgres://username:password@localhost:5432/chat_app
+# JWT_SECRET=your_jwt_secret_key
+
+# 5. Run the server
+go run main.go
