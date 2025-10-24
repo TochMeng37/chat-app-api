@@ -2,7 +2,9 @@
 
 # Don't sync user-specific SQLite databases
 .project/*.sqlite
-
+.env
+.env.*
+!.env.example
 # Don't sync SQLite auxiliary files
 .project/*.sqlite-wal
 .project/*.sqlite-shm
